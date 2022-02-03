@@ -1,0 +1,11 @@
+{
+  "developerName": "Francisco Javier Romero",
+  "developerEmail": "franciscoromero@capitole-consulting.com",
+  "modelPackage": "com.prueba.manomano.model",
+  "apiPackage": "com.prueba.manomano.api",
+  "dateLibrary": "java8",
+  "useBeanValidation": true,
+  "interfaceOnly": true,
+  "useOptional": true,
+  "library": "spring-boot"
+}
