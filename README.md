@@ -58,6 +58,7 @@ The database credentials are in the file ```application.yml```
     - Compile, package, start the jar and Perform the necessary query from the H2 console.
 
 # App test results
+## Postman test
 ### Query
 
 GET http://localhost:8082/products?discountExpDate=2021-08-14 02:30:00&categorizationId=2&minPrice=50.0
@@ -66,7 +67,7 @@ GET http://localhost:8082/products?discountExpDate=2021-08-14 02:30:00&categoriz
 ![alt text](./images/postman.jpg)
 
 
-## SQL
+## H2 SQL test
 ### Query
 ```
 SELECT products.*,
@@ -84,3 +85,6 @@ WHERE  price > 50
 ### Result
 
 ![alt text](./images/sql.jpg)
+
+## Swagger test
+![alt text](./images/swagger.jpg)

@@ -1,16 +1,15 @@
 package com.prueba.manomano.controller;
 
-import com.prueba.manomano.api.ProductsApi;
 import com.prueba.manomano.controller.dto.ProductsIDTO;
 import com.prueba.manomano.model.ProductResponseList;
 import com.prueba.manomano.service.ProductService;
-import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +21,7 @@ import java.util.Optional;
 
 @RestController
 @Slf4j
-public class ProductController implements ProductsApi{
+public class ProductController {
     public static final String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
 
     private final ProductService productsService;
@@ -32,7 +31,7 @@ public class ProductController implements ProductsApi{
         this.productsService = productsService;
     }
 
-    @Override
+    @GetMapping("/products")
     public ResponseEntity<ProductResponseList> getProducts(
             @RequestParam @NotNull @Valid String discountExpDate,
             @RequestParam @NotNull @Valid Long categorizationId,
