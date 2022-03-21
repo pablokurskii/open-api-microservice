@@ -3,6 +3,7 @@ package com.prueba.manomano.api;
 import com.prueba.manomano.model.ProductResponseList;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -12,9 +13,9 @@ public interface ProductsApi {
 
     @GetMapping("/products")
     default ResponseEntity<ProductResponseList> getProducts(
-            @NotNull @Valid String discountExpDate,
-            @NotNull @Valid long categorizationId,
-            @Valid Optional<Double> minPrice) {
+            @RequestParam @NotNull @Valid String discountExpDate,
+            @RequestParam @NotNull @Valid Long categorizationId,
+            @RequestParam @Valid Double minPrice) {
 
         return ResponseEntity.ok(null);
 
