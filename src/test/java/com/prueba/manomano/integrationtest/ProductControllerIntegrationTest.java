@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(classes = ManomanoApplication.class)
 @Slf4j
@@ -38,12 +37,27 @@ class ProductControllerIntegrationTest {
 
         final ResponseEntity<ProductResponseList> actual = productController.getProducts(discountExpDate, categorizationId, minPrice);
 
+        String expectedBody = "class ProductResponseList {\n" +
+                "    products: [class ProductResponse {\n" +
+                "        productId: 13\n" +
+                "        startDate: 2021-03-14T02:00Z\n" +
+                "        endDate: 2021-09-14T03:00Z\n" +
+                "        price: 78.87\n" +
+                "        categorizationType: B2B\n" +
+                "        description: Business-to-Business\n" +
+                "    }, class ProductResponse {\n" +
+                "        productId: 14\n" +
+                "        startDate: 2021-03-14T02:00Z\n" +
+                "        endDate: 2021-09-14T03:00Z\n" +
+                "        price: 92.41\n" +
+                "        categorizationType: B2B\n" +
+                "        description: Business-to-Business\n" +
+                "    }]\n" +
+                "}";
+
         assertThat(actual.getStatusCode()).isEqualTo(HttpStatus.OK);
-        log.info("Body response {}", actual.getBody());
-
-        assertEquals(2, Objects.requireNonNull(actual.getBody()).size());
-
+        assertThat(actual.getBody()).isNotNull();
+        assertThat(actual.getBody()).hasToString(expectedBody);
 
     }
-
 }

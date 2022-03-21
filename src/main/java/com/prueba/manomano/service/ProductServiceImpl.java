@@ -12,16 +12,15 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Service
 @AllArgsConstructor
-
+@Service
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final ProductServiceMapper productServiceMapper;
 
 
-    public ProductResponseList getProductResponse(ProductsIDTO request) {
+    public ProductResponseList getProductResponse(final ProductsIDTO request) {
         final LocalDateTime discountExpDate = request.getDiscountExpDate();
         final List<Product> products = productRepository
                 .findAllByCategorizationType_IdAndPriceGreaterThanAndStartDateLessThanAndEndDateGreaterThan(
@@ -30,10 +29,7 @@ public class ProductServiceImpl implements ProductService {
                         discountExpDate,
                         discountExpDate);
 
-        List<ProductResponse> listEntityToProductResponseList = productServiceMapper.getListEntityToProductResponseList(products);
-        ProductResponseList productListResponse = new ProductResponseList();
-        productListResponse.put("products", listEntityToProductResponseList);
-
-        return productListResponse;
+        return new ProductResponseList()
+                .products(productServiceMapper.getListEntityToProductResponseList(products));
     }
 }

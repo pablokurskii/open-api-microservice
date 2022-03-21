@@ -20,7 +20,7 @@ http://localhost:8082/h2-console
 
 The database credentials are in the file ```application.yml```
 
-##Tasks
+## Tasks
 
 
 
@@ -29,11 +29,11 @@ The database credentials are in the file ```application.yml```
    can have n products*.
 2. Create the following categorization type inserts in the **data.sql** script associated with the entity created in step 1:
 
-   | CATEGORIZATION_ID        | TYPE           | DESCRIPTION  |
-       | :-------------: |:-------------:| :-----:|
-   | 1      | B2B | Business-to-Business |
-   | 2      | B2C      |   Business-to-Consumer |
-   | 3 | C2C      |    Consumer-to-Consumer |
+   | CATEGORIZATION_ID  | TYPE  | DESCRIPTION
+   |---|---|---|
+   1 | B2B | Business-to-Business
+   2 | B2C | Business-to-Consumer
+   3 | C2C | Consumer-to-Consumer
    
 3. Modify the contract to pass as query param the categorization identifier and the minimum price. Also modify the 
    response object in the contract so that it returns the **categorization type** as well as the **description**.
@@ -61,7 +61,7 @@ The database credentials are in the file ```application.yml```
 ## Postman test
 ### Query
 
-GET http://localhost:8082/products?discountExpDate=2021-08-14 02:30:00&categorizationId=2&minPrice=50.0
+GET [http://localhost:8082/products?discountExpDate=2021-04-14 00:00:00&categorizationId=1&minPrice=50.0]()
 
 ### Result
 ![alt text](./images/postman.jpg)
@@ -71,15 +71,16 @@ GET http://localhost:8082/products?discountExpDate=2021-08-14 02:30:00&categoriz
 ### Query
 ```
 SELECT products.*,
-       categorization_type.type
+       categorization_type.type,
+       categorization_type.description,
 FROM   products
        LEFT OUTER JOIN categorization_type
                     ON products.categorization_id =
                        categorization_type.categorization_id
 WHERE  price > 50
-       AND products.categorization_id = '2'
-       AND start_date <= '2021-08-14 02:30:00'
-       AND end_date >= '2021-08-14 02:30:00'  
+       AND products.categorization_id = '1'
+       AND start_date <= '2021-04-14 00:00:00'
+       AND end_date >= '2021-04-14 00:00:00'   
 ```
 
 ### Result
@@ -88,14 +89,4 @@ WHERE  price > 50
 
 ## Swagger test
 ![alt text](./images/swagger.JPG)
-
-### Also checked mvn package result jar file
-```
-java -jar manomano-0.0.1-SNAPSHOT.jar
-```
-
-## TODO
-* Implement OpenApi-Swagger code generator
-* NPE and other exception handling
-* Increase code coverage by tests
 
