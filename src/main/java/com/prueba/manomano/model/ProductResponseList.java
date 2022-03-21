@@ -1,4 +1,6 @@
 package com.prueba.manomano.model;
 
-public class ProductResponseList {
-}
+import java.util.LinkedHashMap;
+import java.util.List;
+
+public class ProductResponseList extends LinkedHashMap<String, List<ProductResponse>> {}

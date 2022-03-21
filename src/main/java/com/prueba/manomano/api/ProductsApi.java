@@ -3,22 +3,20 @@ package com.prueba.manomano.api;
 import com.prueba.manomano.model.ProductResponseList;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.time.format.DateTimeFormatter;
-import java.util.OptionalDouble;
+import java.util.Optional;
 
-@RequestMapping("/products")
 public interface ProductsApi {
 
-    @GetMapping("/")
-    default ResponseEntity<ProductResponseList> getProducts(@RequestParam @NotNull @Valid String discountExpDate,
-                                                            @RequestParam @NotNull @Valid Long categoryId,
-                                                            @RequestParam @Valid OptionalDouble minPrice) {
-        /*TODO */
-        return null;
+    @GetMapping("/products")
+    default ResponseEntity<ProductResponseList> getProducts(
+            @NotNull @Valid String discountExpDate,
+            @NotNull @Valid long categorizationId,
+            @Valid Optional<Double> minPrice) {
+
+        return ResponseEntity.ok(null);
+
     }
 }

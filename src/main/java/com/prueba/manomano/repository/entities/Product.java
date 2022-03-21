@@ -33,7 +33,8 @@ public class Product {
     @Column(name = "PRICE")
     private Double price;
 
-    @Column(name = "CATEGORIZATION_ID", nullable = false)
-    private Long categorizationType;
+    @ManyToOne
+    @JoinColumn(name = "CATEGORIZATION_ID", nullable = false)
+    private CategorizationType categorizationType;
 
 }

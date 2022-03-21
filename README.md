@@ -57,3 +57,30 @@ The database credentials are in the file ```application.yml```
     - Using the maven command necessary to pass the tests.
     - Compile, package, start the jar and Perform the necessary query from the H2 console.
 
+# App test results
+### Query
+
+GET http://localhost:8082/products?discountExpDate=2021-08-14 02:30:00&categorizationId=2&minPrice=50.0
+
+### Result
+![alt text](./images/postman.jpg)
+
+
+## SQL
+### Query
+```
+SELECT products.*,
+       categorization_type.type
+FROM   products
+       LEFT OUTER JOIN categorization_type
+                    ON products.categorization_id =
+                       categorization_type.categorization_id
+WHERE  price > 50
+       AND products.categorization_id = '2'
+       AND start_date <= '2021-08-14 02:30:00'
+       AND end_date >= '2021-08-14 02:30:00'  
+```
+
+### Result
+
+![alt text](./images/sql.jpg)
