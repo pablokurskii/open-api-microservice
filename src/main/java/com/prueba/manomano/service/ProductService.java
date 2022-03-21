@@ -1,5 +1,8 @@
 package com.prueba.manomano.service;
 
-public interface ProductService {
+import com.prueba.manomano.controller.dto.ProductsIDTO;
+import com.prueba.manomano.model.ProductResponseList;
 
+public interface ProductService {
+    ProductResponseList getProductResponse(ProductsIDTO request);
 }
