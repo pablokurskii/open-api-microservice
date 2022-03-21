@@ -87,4 +87,15 @@ WHERE  price > 50
 ![alt text](./images/sql.jpg)
 
 ## Swagger test
-![alt text](./images/swagger.jpg)
+![alt text](./images/swagger.JPG)
+
+### Also checked mvn package result jar file
+```
+java -jar manomano-0.0.1-SNAPSHOT.jar
+```
+
+## TODO
+* Implement OpenApi-Swagger code generator
+* NPE and other exception handling
+* Increase code coverage by tests
+
